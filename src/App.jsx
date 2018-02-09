@@ -7,7 +7,6 @@ class App extends Component {
 
     return (
       <div>
-        <h1>Tenants and shit</h1>
         <Users />
         <GoogleApiWrapper center={location} />
       </div>

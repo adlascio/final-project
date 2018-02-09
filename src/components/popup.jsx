@@ -108,7 +108,6 @@ class Popup extends Component {
     reader.readAsDataURL(file)
   }
 
-
   checkRequiredFields() {
     const listing = this.state;
     const required_fields = ['street', 'city', 'rent_amount', 'available_date'];
@@ -119,10 +118,8 @@ class Popup extends Component {
         return false;
       }
     }
-    alert("Listing updated successfully.");
     return true;
   }
-
 
   editListing(event) {
     event.preventDefault();
@@ -149,21 +146,19 @@ class Popup extends Component {
         laundry_on_site: listing.laundry_in_site,
         furniture: listing.furniture,
         parking: listing.parking,
-        file: listing.imagePreviewUrl,
         landlord_id: user.id,
         landlord_email: user.email
       })
-        .then((response) => {
-          console.log(response);
-          const data = response.data;
-          if (response.statusText === 'OK'){
-            alert("Listing updated successfully.");
-            window.location = '/#/user/listing'
-          }
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
+      .then((response) => {
+        const data = response.data;
+        if (response.statusText === 'OK'){
+          alert("Listing updated successfully.");
+          window.location = '/#/user/listings'
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
     }
   }
 
@@ -425,9 +420,9 @@ class Popup extends Component {
                               <label>Fully Furnished</label>
                               <label className="switch">
                                 <input
-                                  name="furnished"
+                                  name="furniture"
                                   type="checkbox"
-                                  value={this.state.furnished}
+                                  value={this.state.furniture}
                                   onChange={this.handleCheckbox}>
                                 </input>
                                 <span className="slider round"></span>

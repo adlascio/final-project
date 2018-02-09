@@ -1,7 +1,3 @@
-// Update with your config settings.
-
-console.log("using this config on knexfile");
-
 module.exports = {
   development: {
     client: 'postgresql',
@@ -18,7 +14,6 @@ module.exports = {
       directory: __dirname + '/db/seeds'
     }
   },
-
   production: {
     client: 'postgresql',
     connection: {
@@ -34,5 +29,4 @@ module.exports = {
       tableName: 'knex_migrations'
     }
   }
-
 };

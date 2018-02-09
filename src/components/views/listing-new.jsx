@@ -66,7 +66,6 @@ class NewListing extends Component {
         file: file,
         imagePreviewUrl: reader.result
       });
-      console.log(reader.result);
     }
     reader.readAsDataURL(file)
   }
@@ -76,7 +75,6 @@ class NewListing extends Component {
     const listing = this.state;
     const required_fields = ['street', 'city', 'rent_amount', 'available_date'];
     for (let field of required_fields) {
-      console.log(`listing.${field}`, listing[field]);
       if (!listing[field]) {
         alert(`${field} is required.`);
         return false;
@@ -113,15 +111,15 @@ class NewListing extends Component {
         landlord_id: user.id,
         landlord_email: user.email
       })
-        .then(function (response) {
-          console.log(response);
-          if(response.statusText === "Created"){
-            alert("Listing created with success.");
-          }
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
+      .then(function (response) {
+        console.log(response);
+        if(response.statusText === "Created"){
+          alert("Listing created with success.");
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
     }
   }
 
@@ -243,7 +241,6 @@ class NewListing extends Component {
                           </div>
                         </div>
                       </div>
-
                       <div className="columns">
                         <div className="column">
                           <div>
@@ -411,4 +408,3 @@ class NewListing extends Component {
 }
 
 export default NewListing;
-// export default GoogleApiWrapper({apiKey: ('AIzaSyB8uJxSx8YzDb-Nm8CP9KB-egJe3mZF7OI')})(NewListing)

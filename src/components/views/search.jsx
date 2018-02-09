@@ -17,7 +17,6 @@ class Search extends Component {
       .then((response) => {
         rooms = response.data;
         this.setState({rooms: rooms});
-        console.log(this.state.rooms);
       })
       .catch((error) => {
         console.log(error);

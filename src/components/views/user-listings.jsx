@@ -36,7 +36,7 @@ class UserListings extends Component {
         }
       })
       .catch((error) => {
-        console.log("mess in getUserIdByName", error);
+        console.log("Error: ", error);
       });
   }
 
@@ -54,7 +54,7 @@ class UserListings extends Component {
       }
     })
     .catch((error) => {
-      console.log("mess in getRoomsByUserId", error);
+      console.log("Error: ", error);
     });
   }
 
@@ -62,11 +62,11 @@ class UserListings extends Component {
     const currentUser = JSON.parse(localStorage.getItem('user'));
     this.getUserIdByName(currentUser.name, (err, result)=> {
       if(err){
-        console.log("error in getUserIdByName", err)
+        console.log("Unable to retrieve user by ID", err)
       } else {
         this.getRoomsByUserId(result, (err, result) => {
           if(err){
-            console.log("error in getRoomsByUserId", err);
+            console.log("Unable to retrieve user by ID", err);
           } else {
             result.forEach((room) => {
               this.setState({
@@ -97,15 +97,10 @@ class UserListings extends Component {
         }
       })
       .catch((error) => {
-        console.log("mess in deleteListing", error);
+        console.log("Error occured while deleting: ", error);
       });
-    } else {
-      //Do nothing!
-    }
-
+    } else {}
   }
-
-
   componentDidMount() {
     this.renderUserListings();
   }
@@ -155,24 +150,25 @@ class UserListings extends Component {
             </footer>
           </div>
         </div>
-    )
+      )
+
     return (
-    <div>
-      <UserMenu />
-      <div className="animated fadeIn">
-        <div className="sideScroll columns">
-          {
-            this.state.rooms.map((item) => {
-               return userListing(item.street, item.city, item.rent_amount, item.description, item.id, item.file)
-            })
-          }
-          <div className="sideScroll-inner"></div>
-          {this.state.showPopup ? <Popup room_id={this.state.selectedRoom} closePopup={this.togglePopup.bind(this)}/> : null }
+        <div>
+          <UserMenu />
+          <div className="animated fadeIn">
+            <div className="sideScroll columns">
+              {
+                this.state.rooms.map((item) => {
+                   return userListing(item.street, item.city, item.rent_amount, item.description, item.id, item.file)
+                })
+              }
+              <div className="sideScroll-inner"></div>
+              {this.state.showPopup ? <Popup room_id={this.state.selectedRoom} closePopup={this.togglePopup.bind(this)}/> : null }
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-    )
+      )
+    }
   }
-}
 
 export default UserListings;

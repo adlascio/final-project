@@ -43,7 +43,6 @@ class UserSettings extends Component {
     return (
       <div>
         <UserMenu/>
-
         <div className="container animated fadeIn">
           <div className="columns">
             <section className="column">
